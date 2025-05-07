@@ -1,0 +1,1 @@
+scaler = joblib.load("scaler.pkl")
