@@ -272,6 +272,38 @@ if st.button("Predict Stroke Risk"):
             st.info("Please ensure all fields are filled correctly.")
             st.write("Please try again or select a different model.")
 
+# Map models to their confusion matrix images
+CONF_MATRIX_IMAGES = {
+
+    "svm tuned": r"D:\semster7\ml_stroke\stoke-prediction-machine-learning\stroke prediction\notebooks\comp\SVM.png",
+
+    "Niave optuna ": r"D:\semster7\ml_stroke\stoke-prediction-machine-learning\stroke prediction\notebooks\comp\NaiveOptuna.png",
+
+    "Decision tree ": r"D:\semster7\ml_stroke\stoke-prediction-machine-learning\stroke prediction\notebooks\comp\dtree_grid.png",
+
+    "Naive Optuna ": r"D:\semster7\ml_stroke\stoke-prediction-machine-learning\stroke prediction\notebooks\comp\NaiveOptuna.png",
+    
+    "Knn ": r"D:\semster7\ml_stroke\stoke-prediction-machine-learning\stroke prediction\notebooks\comp\KNN (2).png"
+
+
+    
+
+
+
+,
+}
+
+# Section: Show confusion matrix based on model
+with st.expander("📊 View Model's Recall"):
+    selected_for_matrix = st.selectbox("Choose model to view its confusion matrix:", list(CONF_MATRIX_IMAGES.keys()))
+    
+    matrix_path = CONF_MATRIX_IMAGES.get(selected_for_matrix)
+    
+    if matrix_path and os.path.exists(matrix_path):
+        st.image(matrix_path, caption=f"Confusion Matrix: {selected_for_matrix}", use_column_width=True)
+    else:
+        st.warning("Confusion matrix image not found.")
+
 # Add information about the app
 with st.expander("About this App"):
     st.markdown("""
